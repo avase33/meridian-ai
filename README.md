@@ -1,6 +1,6 @@
 <div align="center">
 
-# ðŸŒ Meridian AI
+# Meridian AI
 
 **Enterprise Autonomous Business Intelligence Agent Platform**
 
