@@ -30,7 +30,7 @@ async_session_factory = async_sessionmaker(
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
-    """FastAPI dependency â€” yields a DB session per request."""
+    """FastAPI dependency — yields a DB session per request."""
     async with async_session_factory() as session:
         try:
             yield session
@@ -53,6 +53,6 @@ async def db_session() -> AsyncGenerator[AsyncSession, None]:
 
 
 async def create_tables() -> None:
-    """Create all tables (dev/test only â€” use Alembic in production)."""
+    """Create all tables (dev/test only — use Alembic in production)."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
