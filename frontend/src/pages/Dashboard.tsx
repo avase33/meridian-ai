@@ -55,7 +55,7 @@ export function Dashboard() {
       <div>
         <h1 className="text-2xl font-bold text-white">Overview</h1>
         <p className="mt-1 text-gray-400">
-          Meridian is watching your business â€” here is what matters right now.
+          Meridian is watching your business — here is what matters right now.
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export function Dashboard() {
 
       {/* Chart */}
       <div className="rounded-xl border border-gray-800 bg-gray-900 p-6">
-        <h2 className="mb-4 text-lg font-semibold text-white">Revenue â€” Last 24h</h2>
+        <h2 className="mb-4 text-lg font-semibold text-white">Revenue — Last 24h</h2>
         <ResponsiveContainer width="100%" height={240}>
           <LineChart data={mockChartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -89,7 +89,7 @@ export function Dashboard() {
       <div className="rounded-xl border border-gray-800 bg-gray-900 p-6">
         <h2 className="mb-4 text-lg font-semibold text-white">Recent Insights</h2>
         {insights.length === 0 ? (
-          <p className="text-gray-500">No insights yet â€” agents are monitoring.</p>
+          <p className="text-gray-500">No insights yet — agents are monitoring.</p>
         ) : (
           <ul className="divide-y divide-gray-800">
             {insights.map(i => (
