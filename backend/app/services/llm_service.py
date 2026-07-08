@@ -1,4 +1,4 @@
-"""LLM Service â€” thin wrapper around the Anthropic Claude API."""
+"""LLM Service — thin wrapper around the Anthropic Claude API."""
 
 from __future__ import annotations
 
@@ -107,7 +107,7 @@ _llm_service: Optional[LLMService] = None
 
 
 def get_llm_service() -> LLMService:
-    """FastAPI dependency â€” returns a singleton LLM service."""
+    """FastAPI dependency — returns a singleton LLM service."""
     global _llm_service
     if _llm_service is None:
         _llm_service = LLMService()
