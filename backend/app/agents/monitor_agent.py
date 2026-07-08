@@ -1,4 +1,4 @@
-"""MonitorAgent â€” polls configured data sources and returns a metric snapshot."""
+"""MonitorAgent — polls configured data sources and returns a metric snapshot."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ class MonitorAgent(BaseAgent):
     Supported sources:
       - postgresql  (SQL query via asyncpg)
       - rest_api    (HTTP GET with optional auth header)
-      - static      (inline value â€” useful for testing)
+      - static      (inline value — useful for testing)
     """
 
     def _system_prompt(self) -> str:
@@ -94,7 +94,7 @@ class MonitorAgent(BaseAgent):
                 duration_ms=(time.time() - start) * 1000,
             )
 
-    # â”€â”€ helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── helpers ────────────────────────────────────────────────────────────
 
     async def _fetch_rest_metric(
         self, url: str, value_path: str = "value", auth_header: str = ""
