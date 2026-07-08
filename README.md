@@ -11,25 +11,25 @@
 [![Claude AI](https://img.shields.io/badge/Powered%20by-Claude%20AI-orange.svg)](https://anthropic.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> **The AI that watches your business 24/7 â€” so you don't have to.**
+> **The AI that watches your business 24/7 — so you don't have to.**
 
-[Quick Start](#-quick-start) Â· [Architecture](#-architecture) Â· [Features](#-features) Â· [API Docs](#-api-reference) Â· [Contributing](#-contributing)
+[Quick Start](#-quick-start) · [Architecture](#-architecture) · [Features](#-features) · [API Docs](#-api-reference) · [Contributing](#-contributing)
 
 </div>
 
 ---
 
-## ðŸŽ¯ What is Meridian?
+## 🎯 What is Meridian?
 
 Meridian is an **enterprise-grade autonomous AI agent platform** that continuously monitors your
 business metrics, detects anomalies in real-time, investigates root causes using a fleet of
 specialized AI agents, and delivers executive-ready insights before your team even notices
 something is wrong.
 
-**Traditional BI tools are reactive** â€” you open a dashboard and ask questions.
+**Traditional BI tools are reactive** — you open a dashboard and ask questions.
 
-**Meridian is proactive** â€” it watches everything, understands context, and tells you what
-matters â€” automatically.
+**Meridian is proactive** — it watches everything, understands context, and tells you what
+matters — automatically.
 
 | | Traditional BI | **Meridian** |
 |---|---|---|
@@ -41,73 +41,73 @@ matters â€” automatically.
 
 ---
 
-## âœ¨ Features
+## ✨ Features
 
-### ðŸ¤– Multi-Agent Architecture
-- **MonitorAgent** â€” Continuously polls data sources (PostgreSQL, REST APIs, webhooks)
-- **AnomalyAgent** â€” Statistical + ML-based deviation detection with Z-score and IQR analysis
-- **InvestigatorAgent** â€” Autonomous root-cause analysis using Claude chain-of-thought reasoning
-- **ReporterAgent** â€” Synthesizes findings into executive-ready briefings with recommendations
-- **ActionAgent** â€” Optional automated responses (PagerDuty alerts, Jira tickets, Slack DMs)
+### 🤖 Multi-Agent Architecture
+- **MonitorAgent** — Continuously polls data sources (PostgreSQL, REST APIs, webhooks)
+- **AnomalyAgent** — Statistical + ML-based deviation detection with Z-score and IQR analysis
+- **InvestigatorAgent** — Autonomous root-cause analysis using Claude chain-of-thought reasoning
+- **ReporterAgent** — Synthesizes findings into executive-ready briefings with recommendations
+- **ActionAgent** — Optional automated responses (PagerDuty alerts, Jira tickets, Slack DMs)
 
-### ðŸ¢ Enterprise Ready
-- **Multi-tenant** â€” Complete data isolation per organization with row-level security
-- **RBAC** â€” Admin, Analyst, Viewer, and fully custom roles
-- **Audit Logging** â€” Immutable trail of every agent decision and API call
-- **SSO** â€” OAuth2 / JWT with SAML 2.0 extension points
-- **SOC2-Ready** â€” Compliance-first design with encryption at rest and in transit
-- **High Availability** â€” Stateless API + Redis queues = horizontal scaling
+### 🏢 Enterprise Ready
+- **Multi-tenant** — Complete data isolation per organization with row-level security
+- **RBAC** — Admin, Analyst, Viewer, and fully custom roles
+- **Audit Logging** — Immutable trail of every agent decision and API call
+- **SSO** — OAuth2 / JWT with SAML 2.0 extension points
+- **SOC2-Ready** — Compliance-first design with encryption at rest and in transit
+- **High Availability** — Stateless API + Redis queues = horizontal scaling
 
-### ðŸ“Š Integrations
+### 📊 Integrations
 - **Databases**: PostgreSQL, MySQL, Snowflake, BigQuery, Redshift
 - **APIs**: REST, GraphQL (bring your own connector)
 - **Alerting**: PagerDuty, Slack, Microsoft Teams, Email
 - **Ticketing**: Jira, Linear, GitHub Issues
 
-### ðŸ” Observability
+### 🔍 Observability
 - OpenTelemetry distributed tracing (every agent span tracked)
-- Agent decision transparency â€” see the full reasoning chain per insight
+- Agent decision transparency — see the full reasoning chain per insight
 - LLM cost tracking per tenant / per agent / per workflow
 - Prometheus metrics endpoint + Grafana dashboard templates
 
 ---
 
-## ðŸ— Architecture
+## 🏗 Architecture
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                       Meridian Platform                      â”‚
-â”‚                                                              â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”     â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”‚
-â”‚  â”‚  React   â”‚â—„â”€â”€â”€â–ºâ”‚     REST API  /  WebSocket          â”‚    â”‚
-â”‚  â”‚Dashboard â”‚     â”‚     (FastAPI + JWT Auth)            â”‚    â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
-â”‚                                     â”‚                        â”‚
-â”‚               â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”        â”‚
-â”‚               â”‚        Agent Orchestrator           â”‚        â”‚
-â”‚               â”‚   (Task routing + State machine)    â”‚        â”‚
-â”‚               â””â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜        â”‚
-â”‚                  â”‚          â”‚          â”‚                     â”‚
-â”‚          â”Œâ”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â” â”Œâ”€â”€â”€â”€â”€â–¼â”€â”€â”€â” â”Œâ”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”             â”‚
-â”‚          â”‚ Monitor  â”‚ â”‚Analyst  â”‚ â”‚ Reporter â”‚             â”‚
-â”‚          â”‚  Agent   â”‚ â”‚  Agent  â”‚ â”‚  Agent   â”‚             â”‚
-â”‚          â””â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”˜             â”‚
-â”‚              â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                    â”‚
-â”‚                     â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”                         â”‚
-â”‚                     â”‚ LLM Service â”‚                         â”‚
-â”‚                     â”‚ (Claude API)â”‚                         â”‚
-â”‚                     â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                         â”‚
-â”‚                                                              â”‚
-â”‚  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”‚
-â”‚  â”‚  PostgreSQL   â”‚  â”‚  Redis   â”‚  â”‚   pgvector (RAG)     â”‚  â”‚
-â”‚  â”‚  (primary DB) â”‚  â”‚ (queues) â”‚  â”‚   knowledge store    â”‚  â”‚
-â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────────────────────────────────────────────┐
+│                       Meridian Platform                      │
+│                                                              │
+│  ┌──────────┐     ┌────────────────────────────────────┐    │
+│  │  React   │◄───►│     REST API  /  WebSocket          │    │
+│  │Dashboard │     │     (FastAPI + JWT Auth)            │    │
+│  └──────────┘     └─────────────────┬──────────────────┘    │
+│                                     │                        │
+│               ┌─────────────────────▼──────────────┐        │
+│               │        Agent Orchestrator           │        │
+│               │   (Task routing + State machine)    │        │
+│               └──┬──────────┬──────────┬───────────┘        │
+│                  │          │          │                     │
+│          ┌───────▼──┐ ┌─────▼───┐ ┌───▼──────┐             │
+│          │ Monitor  │ │Analyst  │ │ Reporter │             │
+│          │  Agent   │ │  Agent  │ │  Agent   │             │
+│          └───┬──────┘ └────┬────┘ └────┬─────┘             │
+│              └─────────────┼───────────┘                    │
+│                     ┌──────▼──────┐                         │
+│                     │ LLM Service │                         │
+│                     │ (Claude API)│                         │
+│                     └─────────────┘                         │
+│                                                              │
+│  ┌───────────────┐  ┌──────────┐  ┌──────────────────────┐  │
+│  │  PostgreSQL   │  │  Redis   │  │   pgvector (RAG)     │  │
+│  │  (primary DB) │  │ (queues) │  │   knowledge store    │  │
+│  └───────────────┘  └──────────┘  └──────────────────────┘  │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## ðŸš€ Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 - Docker & Docker Compose v2+
@@ -167,57 +167,57 @@ print(f"Agent created: {agent['id']}")
 
 ---
 
-## ðŸ“¦ Project Structure
+## 📦 Project Structure
 
 ```
 meridian-ai/
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ app/
-â”‚   â”‚   â”œâ”€â”€ agents/              # AI agent implementations
-â”‚   â”‚   â”‚   â”œâ”€â”€ base.py          # Abstract BaseAgent + Tool definitions
-â”‚   â”‚   â”‚   â”œâ”€â”€ orchestrator.py  # Multi-agent task coordinator
-â”‚   â”‚   â”‚   â”œâ”€â”€ monitor_agent.py # Data polling & scheduling
-â”‚   â”‚   â”‚   â”œâ”€â”€ analyst_agent.py # Anomaly detection & investigation
-â”‚   â”‚   â”‚   â””â”€â”€ reporter_agent.py# Executive report generation
-â”‚   â”‚   â”œâ”€â”€ api/v1/              # Versioned REST API
-â”‚   â”‚   â”‚   â”œâ”€â”€ agents.py        # Agent CRUD + trigger endpoints
-â”‚   â”‚   â”‚   â”œâ”€â”€ insights.py      # Insight feed + feedback
-â”‚   â”‚   â”‚   â””â”€â”€ auth.py          # JWT auth endpoints
-â”‚   â”‚   â”œâ”€â”€ models/              # SQLAlchemy ORM models
-â”‚   â”‚   â”œâ”€â”€ services/            # LLM, scheduler, vector store
-â”‚   â”‚   â”œâ”€â”€ config.py            # Pydantic settings
-â”‚   â”‚   â”œâ”€â”€ database.py          # Async DB sessions
-â”‚   â”‚   â””â”€â”€ main.py              # FastAPI app entry point
-â”‚   â”œâ”€â”€ tests/
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â””â”€â”€ requirements.txt
-â”œâ”€â”€ frontend/                    # React + TypeScript dashboard
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ App.tsx
-â”‚       â””â”€â”€ pages/Dashboard.tsx
-â”œâ”€â”€ docs/
-â”‚   â””â”€â”€ ARCHITECTURE.md
-â”œâ”€â”€ docker-compose.yml
-â””â”€â”€ .env.example
+├── backend/
+│   ├── app/
+│   │   ├── agents/              # AI agent implementations
+│   │   │   ├── base.py          # Abstract BaseAgent + Tool definitions
+│   │   │   ├── orchestrator.py  # Multi-agent task coordinator
+│   │   │   ├── monitor_agent.py # Data polling & scheduling
+│   │   │   ├── analyst_agent.py # Anomaly detection & investigation
+│   │   │   └── reporter_agent.py# Executive report generation
+│   │   ├── api/v1/              # Versioned REST API
+│   │   │   ├── agents.py        # Agent CRUD + trigger endpoints
+│   │   │   ├── insights.py      # Insight feed + feedback
+│   │   │   └── auth.py          # JWT auth endpoints
+│   │   ├── models/              # SQLAlchemy ORM models
+│   │   ├── services/            # LLM, scheduler, vector store
+│   │   ├── config.py            # Pydantic settings
+│   │   ├── database.py          # Async DB sessions
+│   │   └── main.py              # FastAPI app entry point
+│   ├── tests/
+│   ├── Dockerfile
+│   └── requirements.txt
+├── frontend/                    # React + TypeScript dashboard
+│   └── src/
+│       ├── App.tsx
+│       └── pages/Dashboard.tsx
+├── docs/
+│   └── ARCHITECTURE.md
+├── docker-compose.yml
+└── .env.example
 ```
 
 ---
 
-## âš™ï¸ Configuration
+## ⚙️ Configuration
 
 | Variable | Description | Required |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | Claude API key | âœ… |
-| `DATABASE_URL` | PostgreSQL DSN | âœ… |
-| `REDIS_URL` | Redis DSN | âœ… |
-| `SECRET_KEY` | JWT signing secret (32+ chars) | âœ… |
+| `ANTHROPIC_API_KEY` | Claude API key | ✅ |
+| `DATABASE_URL` | PostgreSQL DSN | ✅ |
+| `REDIS_URL` | Redis DSN | ✅ |
+| `SECRET_KEY` | JWT signing secret (32+ chars) | ✅ |
 | `LLM_MODEL` | Claude model (`claude-opus-4-8`) | Optional |
 | `MAX_AGENTS_PER_ORG` | Hard cap per tenant | Optional |
 | `ALLOWED_ORIGINS` | CORS origins | Optional |
 
 ---
 
-## ðŸ¤ Contributing
+## 🤝 Contributing
 
 We love contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -236,13 +236,13 @@ ruff check . && black --check .
 
 ---
 
-## ðŸ“œ License
+## 📜 License
 
-MIT Â© [avase33](https://github.com/avase33)
+MIT © [avase33](https://github.com/avase33)
 
 <div align="center">
   <br/>
-  <strong>Built with Claude AI Â· FastAPI Â· React Â· PostgreSQL</strong>
+  <strong>Built with Claude AI · FastAPI · React · PostgreSQL</strong>
   <br/>
-  <a href="https://github.com/avase33/meridian-ai/stargazers">â­ Star this repo</a> if Meridian helps you!
+  <a href="https://github.com/avase33/meridian-ai/stargazers">⭐ Star this repo</a> if Meridian helps you!
 </div>
