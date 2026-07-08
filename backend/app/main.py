@@ -1,4 +1,4 @@
-"""Meridian AI â€” FastAPI application entry point."""
+"""Meridian AI — FastAPI application entry point."""
 
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -38,7 +38,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# â”€â”€ Middleware â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Middleware ─────────────────────────────────────────────────────────────
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,11 +48,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# â”€â”€ Prometheus metrics â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Prometheus metrics ─────────────────────────────────────────────────────
 
 Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
-# â”€â”€ Routers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Routers ────────────────────────────────────────────────────────────────
 
 API_PREFIX = "/api/v1"
 
@@ -61,7 +61,7 @@ app.include_router(agents_router,   prefix=API_PREFIX)
 app.include_router(insights_router, prefix=API_PREFIX)
 
 
-# â”€â”€ Health check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Health check ───────────────────────────────────────────────────────────
 
 @app.get("/health", tags=["system"])
 async def health() -> dict:
