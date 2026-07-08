@@ -1,4 +1,4 @@
-"""ReporterAgent â€” synthesizes analysis into executive-ready briefings."""
+"""ReporterAgent — synthesizes analysis into executive-ready briefings."""
 
 from __future__ import annotations
 
@@ -67,8 +67,8 @@ Contributing Factors: {', '.join(factors) or 'None identified'}
 {chr(10).join(f"- {a}" for a in actions) or "- Continue monitoring"}
 
 Write a briefing with these sections:
-1. **TL;DR** (1 sentence â€” the most important thing to know)
-2. **What Happened** (2â€“3 sentences)
+1. **TL;DR** (1 sentence — the most important thing to know)
+2. **What Happened** (2–3 sentences)
 3. **Business Impact** (quantified if possible)
 4. **Root Cause** (clear explanation)
 5. **Immediate Actions** (numbered, prioritized)
