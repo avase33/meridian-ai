@@ -1,4 +1,4 @@
-# Meridian AI â€” Architecture
+# Meridian AI — Architecture
 
 ## Overview
 
@@ -9,33 +9,33 @@ FastAPI service. Each component is stateless and independently scalable.
 
 ```
 Client (React)
-    â”‚  REST + WebSocket
-    â–¼
+    │  REST + WebSocket
+    ▼
 FastAPI Application (uvicorn)
-    â”‚  JWT validated on every request
-    â”‚  Prometheus metrics exposed at /metrics
-    â–¼
+    │  JWT validated on every request
+    │  Prometheus metrics exposed at /metrics
+    ▼
 Agent Orchestrator
-    â”‚  Routes tasks based on agent type
-    â”‚  Manages concurrency with asyncio Semaphore
-    â”‚
-    â”œâ”€â”€â–º MonitorAgent    â€” fetch metric from data source
-    â”œâ”€â”€â–º AnalystAgent    â€” statistical + LLM anomaly detection
-    â””â”€â”€â–º ReporterAgent   â€” executive briefing generation
-                â”‚
-                â–¼
+    │  Routes tasks based on agent type
+    │  Manages concurrency with asyncio Semaphore
+    │
+    ├──► MonitorAgent    — fetch metric from data source
+    ├──► AnalystAgent    — statistical + LLM anomaly detection
+    └──► ReporterAgent   — executive briefing generation
+                │
+                ▼
            LLM Service (Claude API)
-                â”‚
-                â–¼
+                │
+                ▼
          anthropic.AsyncAnthropic
 ```
 
 ## Agent Lifecycle
 
 ```
-IDLE â†’ RUNNING â†’ COMPLETED
-                â†’ FAILED
-         â†‘
+IDLE → RUNNING → COMPLETED
+                → FAILED
+         ↑
      WAITING (tool execution)
 ```
 
@@ -43,32 +43,32 @@ IDLE â†’ RUNNING â†’ COMPLETED
 
 ```
 Data Source (DB / API)
-    â”‚
-    â–¼
+    │
+    ▼
 MonitorAgent.run()
-    â”‚  returns: { value, timestamp, metric_name }
-    â–¼
+    │  returns: { value, timestamp, metric_name }
+    ▼
 AnalystAgent.run()
-    â”‚  Z-score + IQR statistical check
-    â”‚  If anomaly â†’ Claude chain-of-thought investigation
-    â”‚  returns: { anomaly_detected, severity, root_cause, confidence }
-    â–¼
+    │  Z-score + IQR statistical check
+    │  If anomaly → Claude chain-of-thought investigation
+    │  returns: { anomaly_detected, severity, root_cause, confidence }
+    ▼
 ReporterAgent.run()       (only if anomaly_detected = true)
-    â”‚  Claude synthesis â†’ executive briefing markdown
-    â”‚  returns: { briefing_markdown, recommended_actions }
-    â–¼
+    │  Claude synthesis → executive briefing markdown
+    │  returns: { briefing_markdown, recommended_actions }
+    ▼
 Insight saved to PostgreSQL
-    â”‚
-    â–¼
+    │
+    ▼
 WebSocket push to connected clients
 ```
 
 ## Database Schema
 
 ```
-organizations â”€â”€â”€ 1:N â”€â”€â”€ users
-      â”‚
-      â””â”€â”€â”€â”€ 1:N â”€â”€â”€ agents â”€â”€â”€ 1:N â”€â”€â”€ insights
+organizations ─── 1:N ─── users
+      │
+      └──── 1:N ─── agents ─── 1:N ─── insights
 ```
 
 ## Scaling
@@ -79,7 +79,7 @@ organizations â”€â”€â”€ 1:N â”€â”€â”€ users
 | Celery Workers | Add worker containers (stateless) |
 | PostgreSQL | Read replicas for query load |
 | Redis | Redis Cluster for queue throughput |
-| LLM calls | Anthropic rate limits â€” use `tenacity` retries |
+| LLM calls | Anthropic rate limits — use `tenacity` retries |
 
 ## Security
 
@@ -92,7 +92,7 @@ organizations â”€â”€â”€ 1:N â”€â”€â”€ users
 
 ## Observability Stack
 
-- **Logs**: structlog â†’ JSON â†’ stdout â†’ aggregator (Datadog / CloudWatch)
-- **Metrics**: Prometheus scrape at `/metrics` â†’ Grafana dashboards
-- **Traces**: OpenTelemetry SDK â†’ OTLP exporter â†’ Jaeger / Tempo
+- **Logs**: structlog → JSON → stdout → aggregator (Datadog / CloudWatch)
+- **Metrics**: Prometheus scrape at `/metrics` → Grafana dashboards
+- **Traces**: OpenTelemetry SDK → OTLP exporter → Jaeger / Tempo
 - **Alerts**: Prometheus AlertManager rules for queue lag, error rates, LLM latency
