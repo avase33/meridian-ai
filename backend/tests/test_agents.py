@@ -13,7 +13,7 @@ from app.agents.orchestrator import AgentOrchestrator
 from app.agents.reporter_agent import ReporterAgent
 
 
-# ── Fixtures ───────────────────────────────────────────────────────────────
+#  Fixtures 
 
 @pytest.fixture
 def mock_llm():
@@ -39,7 +39,7 @@ def run_context() -> RunContext:
     return RunContext(org_id="org-test", trigger="manual")
 
 
-# ── MonitorAgent ───────────────────────────────────────────────────────────
+#  MonitorAgent 
 
 class TestMonitorAgent:
     def test_init(self, mock_llm, base_config):
@@ -65,7 +65,7 @@ class TestMonitorAgent:
         assert result.error is not None
 
 
-# ── AnalystAgent ───────────────────────────────────────────────────────────
+#  AnalystAgent 
 
 class TestAnalystAgent:
     def test_severity_levels(self):
@@ -94,7 +94,7 @@ class TestAnalystAgent:
         # Inject a clearly anomalous value
         run_context.metadata["snapshot"] = {
             "metric_name": "revenue",
-            "value":       1.0,            # extreme low — guaranteed anomaly
+            "value":       1.0,            # extreme low � guaranteed anomaly
         }
         agent  = AnalystAgent("a", "t", mock_llm, base_config)
         result = await agent.run(run_context)
@@ -102,7 +102,7 @@ class TestAnalystAgent:
         mock_llm.complete.assert_called_once()
 
 
-# ── Orchestrator ───────────────────────────────────────────────────────────
+#  Orchestrator 
 
 class TestOrchestrator:
     @pytest.mark.asyncio
