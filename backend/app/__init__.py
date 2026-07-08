@@ -1,1 +1,1 @@
-"""Meridian AI — Enterprise Business Intelligence Agent Platform."""
+"""Meridian AI � Enterprise Business Intelligence Agent Platform."""
