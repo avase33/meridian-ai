@@ -13,7 +13,7 @@ from app.database import get_db
 router = APIRouter(prefix="/agents", tags=["agents"])
 
 
-# ── Pydantic schemas ───────────────────────────────────────────────────────
+#  Pydantic schemas 
 
 class AgentConfig(BaseModel):
     data_source:         Dict[str, Any]
@@ -50,7 +50,7 @@ class AgentRunResponse(BaseModel):
     message:    str
 
 
-# ── Endpoints ──────────────────────────────────────────────────────────────
+#  Endpoints 
 
 @router.get("", response_model=List[AgentResponse])
 async def list_agents(
