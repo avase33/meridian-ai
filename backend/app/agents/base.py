@@ -68,9 +68,9 @@ class BaseAgent(ABC):
     Abstract base class for all Meridian AI agents.
 
     Subclasses must implement:
-        - run(context)       â€” the agent's primary execution logic
-        - _register_tools()  â€” return the list of Tools this agent can call
-        - _system_prompt()   â€” the persona / instructions for the LLM
+        - run(context)       — the agent's primary execution logic
+        - _register_tools()  — return the list of Tools this agent can call
+        - _system_prompt()   — the persona / instructions for the LLM
     """
 
     def __init__(
@@ -88,7 +88,7 @@ class BaseAgent(ABC):
         self._tools     = self._register_tools()
         self._trace: List[str] = []
 
-    # â”€â”€ abstract interface â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── abstract interface ─────────────────────────────────────────────────
 
     @abstractmethod
     async def run(self, context: RunContext) -> AgentResult:
@@ -105,7 +105,7 @@ class BaseAgent(ABC):
         """Return the system prompt that shapes this agent's behavior."""
         ...
 
-    # â”€â”€ shared utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── shared utilities ───────────────────────────────────────────────────
 
     async def think(
         self,
@@ -137,7 +137,7 @@ class BaseAgent(ABC):
                 self._trace.append(f"LLM: {text[:200]}...")
                 return text
 
-            # Tool call(s) â€” execute and loop
+            # Tool call(s) — execute and loop
             if response.stop_reason == "tool_use":
                 tool_results = []
                 for block in response.content:
