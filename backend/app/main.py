@@ -1,4 +1,4 @@
-"""Meridian AI — FastAPI application entry point."""
+"""Meridian AI � FastAPI application entry point."""
 
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -38,7 +38,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# ── Middleware ─────────────────────────────────────────────────────────────
+#  Middleware 
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,11 +48,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Prometheus metrics ─────────────────────────────────────────────────────
+#  Prometheus metrics 
 
 Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
-# ── Routers ────────────────────────────────────────────────────────────────
+#  Routers 
 
 API_PREFIX = "/api/v1"
 
@@ -61,7 +61,7 @@ app.include_router(agents_router,   prefix=API_PREFIX)
 app.include_router(insights_router, prefix=API_PREFIX)
 
 
-# ── Health check ───────────────────────────────────────────────────────────
+#  Health check 
 
 @app.get("/health", tags=["system"])
 async def health() -> dict:
