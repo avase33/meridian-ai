@@ -1,4 +1,4 @@
-"""Agent Orchestrator — routes tasks to the right agent and manages lifecycle."""
+"""Agent Orchestrator � routes tasks to the right agent and manages lifecycle."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ class AgentOrchestrator:
     """
     Coordinates multiple agents to handle a full monitoring workflow:
 
-        MonitorAgent  →  AnomalyAgent  →  InvestigatorAgent  →  ReporterAgent
-             ↓                ↓                   ↓                    ↓
+        MonitorAgent    AnomalyAgent    InvestigatorAgent    ReporterAgent
+                                                                    
          raw data       anomaly flag         root cause           executive brief
     """
 
@@ -32,7 +32,7 @@ class AgentOrchestrator:
         self._running: Dict[str, asyncio.Task] = {}
         self._results:  Dict[str, AgentResult] = {}
 
-    # ── public API ─────────────────────────────────────────────────────────
+    #  public API 
 
     async def run_monitor_pipeline(
         self,
@@ -49,7 +49,7 @@ class AgentOrchestrator:
         start = time.time()
         log   = logger.bind(run_id=ctx.run_id, org_id=org_id)
 
-        # 1. MonitorAgent — fetch current metric value(s)
+        # 1. MonitorAgent � fetch current metric value(s)
         log.info("orchestrator.monitor.start")
         monitor = self._make_agent("monitor", agent_config)
         monitor_result = await monitor.run(ctx)
@@ -60,7 +60,7 @@ class AgentOrchestrator:
 
         metric_snapshot = monitor_result.output
 
-        # 2. AnalystAgent — detect anomaly
+        # 2. AnalystAgent � detect anomaly
         log.info("orchestrator.analyst.start")
         analyst = self._make_agent("analyst", agent_config)
         analyst_ctx = RunContext(
@@ -73,7 +73,7 @@ class AgentOrchestrator:
             log.info("orchestrator.no_anomaly")
             return analyst_result  # nothing to report
 
-        # 3. ReporterAgent — synthesize executive briefing
+        # 3. ReporterAgent � synthesize executive briefing
         log.info("orchestrator.reporter.start")
         reporter = self._make_agent("reporter", agent_config)
         reporter_ctx = RunContext(
@@ -104,7 +104,7 @@ class AgentOrchestrator:
 
         return await asyncio.gather(*[_guarded(c) for c in agent_configs])
 
-    # ── private ────────────────────────────────────────────────────────────
+    #  private 
 
     def _make_agent(self, agent_type: str, config: Dict):
         cls_map = {
