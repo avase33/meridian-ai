@@ -1,4 +1,4 @@
-"""AnalystAgent — detects anomalies and investigates root causes using Claude."""
+"""AnalystAgent � detects anomalies and investigates root causes using Claude."""
 
 from __future__ import annotations
 
@@ -115,7 +115,7 @@ class AnalystAgent(BaseAgent):
             duration_ms=(time.time() - start) * 1000,
         )
 
-    # ── tools ──────────────────────────────────────────────────────────────
+    #  tools 
 
     @staticmethod
     def _compute_zscore(value: float, mean: float, std_dev: float) -> float:
