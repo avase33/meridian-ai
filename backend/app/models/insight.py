@@ -1,4 +1,4 @@
-"""Insight ORM model — stores generated briefings and user feedback."""
+"""Insight ORM model � stores generated briefings and user feedback."""
 
 from __future__ import annotations
 
