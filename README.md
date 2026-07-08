@@ -13,7 +13,7 @@
 
 <br/>
 
-> ### **The AI that watches your business 24/7 â€” so you don't have to.**
+> ### **The AI that watches your business 24/7 — so you don't have to.**
 >
 > *Autonomous anomaly detection + root-cause analysis + executive briefings, all on autopilot.*
 
@@ -25,9 +25,9 @@
 
 ---
 
-## ðŸŽ¯ The Problem Meridian Solves
+## 🎯 The Problem Meridian Solves
 
-Traditional BI is **reactive**. You open a dashboard. You ask questions. You find problems â€” after they've hurt you.
+Traditional BI is **reactive**. You open a dashboard. You ask questions. You find problems — after they've hurt you.
 
 **Meridian is proactive.** It monitors everything, reasons about context, and delivers answers before your team even knows to ask.
 
@@ -256,38 +256,38 @@ POST /api/v1/insights/{id}/feedback # Submit thumbs up/down feedback
 
 ```
 meridian-ai/
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ app/
-â”‚   â”‚   â”œâ”€â”€ agents/
-â”‚   â”‚   â”‚   â”œâ”€â”€ base.py           # Abstract BaseAgent + Claude tool-use loop
-â”‚   â”‚   â”‚   â”œâ”€â”€ orchestrator.py   # Multi-agent pipeline coordinator
-â”‚   â”‚   â”‚   â”œâ”€â”€ monitor_agent.py  # Data polling + Celery scheduling
-â”‚   â”‚   â”‚   â”œâ”€â”€ analyst_agent.py  # Statistical detection + LLM root-cause
-â”‚   â”‚   â”‚   â””â”€â”€ reporter_agent.py # Executive briefing via Claude
-â”‚   â”‚   â”œâ”€â”€ api/v1/
-â”‚   â”‚   â”‚   â”œâ”€â”€ auth.py           # JWT login endpoint
-â”‚   â”‚   â”‚   â”œâ”€â”€ agents.py         # Agent CRUD + trigger
-â”‚   â”‚   â”‚   â””â”€â”€ insights.py       # Insight feed + feedback
-â”‚   â”‚   â”œâ”€â”€ models/               # SQLAlchemy ORM (User, Agent, Insight)
-â”‚   â”‚   â”œâ”€â”€ services/
-â”‚   â”‚   â”‚   â””â”€â”€ llm_service.py    # Anthropic async wrapper + cost tracking
-â”‚   â”‚   â”œâ”€â”€ config.py             # Pydantic Settings
-â”‚   â”‚   â”œâ”€â”€ database.py           # Async SQLAlchemy sessions
-â”‚   â”‚   â””â”€â”€ main.py               # FastAPI entry point
-â”‚   â”œâ”€â”€ tests/
-â”‚   â”‚   â””â”€â”€ test_agents.py        # Pytest unit tests with mocking
-â”‚   â”œâ”€â”€ Dockerfile
-â”‚   â””â”€â”€ requirements.txt
-â”œâ”€â”€ frontend/
-â”‚   â””â”€â”€ src/
-â”‚       â”œâ”€â”€ App.tsx               # React Router setup
-â”‚       â””â”€â”€ pages/Dashboard.tsx   # Stats cards + LineChart + Insight feed
-â”œâ”€â”€ docs/
-â”‚   â””â”€â”€ ARCHITECTURE.md
-â”œâ”€â”€ .github/
-â”‚   â””â”€â”€ workflows/ci.yml          # Lint + Test + Security + Docker build
-â”œâ”€â”€ docker-compose.yml            # Full stack: API + Worker + PG + Redis + Grafana
-â””â”€â”€ .env.example
+├── backend/
+│   ├── app/
+│   │   ├── agents/
+│   │   │   ├── base.py           # Abstract BaseAgent + Claude tool-use loop
+│   │   │   ├── orchestrator.py   # Multi-agent pipeline coordinator
+│   │   │   ├── monitor_agent.py  # Data polling + Celery scheduling
+│   │   │   ├── analyst_agent.py  # Statistical detection + LLM root-cause
+│   │   │   └── reporter_agent.py # Executive briefing via Claude
+│   │   ├── api/v1/
+│   │   │   ├── auth.py           # JWT login endpoint
+│   │   │   ├── agents.py         # Agent CRUD + trigger
+│   │   │   └── insights.py       # Insight feed + feedback
+│   │   ├── models/               # SQLAlchemy ORM (User, Agent, Insight)
+│   │   ├── services/
+│   │   │   └── llm_service.py    # Anthropic async wrapper + cost tracking
+│   │   ├── config.py             # Pydantic Settings
+│   │   ├── database.py           # Async SQLAlchemy sessions
+│   │   └── main.py               # FastAPI entry point
+│   ├── tests/
+│   │   └── test_agents.py        # Pytest unit tests with mocking
+│   ├── Dockerfile
+│   └── requirements.txt
+├── frontend/
+│   └── src/
+│       ├── App.tsx               # React Router setup
+│       └── pages/Dashboard.tsx   # Stats cards + LineChart + Insight feed
+├── docs/
+│   └── ARCHITECTURE.md
+├── .github/
+│   └── workflows/ci.yml          # Lint + Test + Security + Docker build
+├── docker-compose.yml            # Full stack: API + Worker + PG + Redis + Grafana
+└── .env.example
 ```
 
 ---
@@ -340,6 +340,6 @@ MIT (c) [avase33](https://github.com/avase33) - see [LICENSE](LICENSE)
 
 <div align="center">
 
-[â­ Star this repo](https://github.com/avase33/meridian-ai/stargazers) if Meridian helps you!
+[⭐ Star this repo](https://github.com/avase33/meridian-ai/stargazers) if Meridian helps you!
 
 </div>
